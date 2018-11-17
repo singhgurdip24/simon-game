@@ -63,7 +63,6 @@ function play(){
    order.push(Math.floor(Math.random()*4)+1);
    }
    compTurn=true;
-   console.log(order);
    intervalId=setInterval(gameTurn,800);
 
 
@@ -118,7 +117,7 @@ function three(){
     audio.play();
   }
   noise=true;
-  bottomleft.style.backgroundColor="skyblue";
+  bottomleft.style.backgroundColor="yellow";
 }
 function four(){
   if(noise){
@@ -126,7 +125,7 @@ function four(){
     audio.play();
   }
   noise=true;
-  bottomright.style.backgroundColor="lightyellow";
+  bottomright.style.backgroundColor="lightskyblue";
 }
 
 function clearColor(){
@@ -134,4 +133,111 @@ function clearColor(){
   topright.style.backgroundColor="darkred";
   bottomleft.style.backgroundColor="goldenrod";
   bottomright.style.backgroundColor="darkblue";
+}
+
+topleft.addEventListener('click',(event)=>{
+  if(on){
+    playOrder.push(1);
+    check();
+    one();
+    if(!win){
+      setTimeout(()=>{
+        clearColor();
+      },300);
+    }
+  }
+});
+
+topright.addEventListener('click',(event)=>{
+  if(on){
+  playOrder.push(2);
+  check();
+  two();
+  if(!win){
+    setTimeout(()=>{clearColor();},300);
+  }
+  }
+});
+
+bottomleft.addEventListener('click',(event)=>{
+  if(on){
+  playOrder.push(3);
+  check();
+  three();
+  if(!win){
+    setTimeout(()=>{clearColor();},300);
+  }
+  }
+});
+
+bottomright.addEventListener('click',(event)=>{
+  if(on){
+  playOrder.push(4);
+  check();
+  four();
+  if(!win){
+    setTimeout(()=>{
+      clearColor();
+    },300);
+  }
+  }
+});
+
+function check(){
+  if(playOrder[playOrder.length-1]!==order[playOrder.length-1]){
+    good = false;
+    console.log(1);
+  }
+
+  if(playOrder.length==3 && good){
+    console.log(6);
+    winGame();
+    console.log(5);
+  }
+  if(good==false){
+console.log(7);
+    flashColor();
+    console.log();
+    turnCounter.innerHTML="NO!";
+    setTimeout(()=>{
+      turnCounter.innerHTML=turn;
+      clearColor();
+      if(strictMode){
+        play();
+      }else{
+        compTurn=true;
+        flash=0;
+        playOrder=[];
+        good=true;
+        intervalId=setInterval(gameTurn,800);
+      }
+    },800);
+    noise=false;
+}
+    if (turn == playOrder.length && good && !win) {
+      console.log(2);
+       turn++;
+       playOrder = [];
+       compTurn = true;
+       flash = 0;
+       turnCounter.innerHTML = turn;
+       intervalId = setInterval(gameTurn, 800);
+       console.log(3);
+     }
+console.log(4);
+
+  }
+  function winGame() {
+    flashColor();
+    turnCounter.innerHTML = "WIN!";
+    on = false;
+    win = true;
+  }
+
+  function flashColor() {
+    console.log(11);
+  topleft.style.backgroundColor = "lightgreen";
+  topright.style.backgroundColor = "tomato";
+  bottomleft.style.backgroundColor = "yellow";
+  bottomright.style.backgroundColor = "lightskyblue";
 }
