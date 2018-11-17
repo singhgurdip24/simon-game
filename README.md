@@ -1,5 +1,6 @@
-# simon-game
+# Simon-game
 Simon Game Project to Learn Javascript
+
 This game is just a beginner project to learn JAVASCRIPT.
 
 In this game a circle is divided into four leds, the game will flash leds in random order.
