@@ -184,17 +184,17 @@ bottomright.addEventListener('click',(event)=>{
 });
 
 function check(){
-  if(playOrder[playOrder.length-1]!=order[playOrder.length-1]){
+  if(playOrder[playOrder.length-1]!==order[playOrder.length-1]){
     good = false;
     console.log(1);
   }
 
-  if(playOrder.length==20 & good){
+  if(playOrder.length==3 && good){
     console.log(6);
     winGame();
     console.log(5);
   }
-  if(good=false){
+  if(good==false){
 console.log(7);
     flashColor();
     console.log();
